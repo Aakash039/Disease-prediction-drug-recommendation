@@ -1,0 +1,118 @@
+<!-- templates/recommendations.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #48e6f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #63cae4;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1, h2 {
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        ul li a:hover {
+            text-decoration: underline;
+        }
+
+        form {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #0a0d0e;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #8dbdf0;
+            color: #0c0e0f;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Drug Recommendations for {{ disease }}</h1>
+        <ul>
+            {% for drug in drugs %}
+                <li><a href="{{ get_drug_url(drug) }}" target="_blank">{{ drug }}</a></li>
+            {% endfor %}
+        </ul>
+        
+        <h2>Feedback Form</h2>
+        <form action="/submit_feedback" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="feedback">Feedback:</label>
+            <textarea id="feedback" name="feedback" rows="4" required></textarea>
+            
+            <input type="submit" value="Submit Feedback">
+        </form>
+
+        <h2>Feedback Received</h2>
+        <ul>
+            {% for feedback_item in feedback_data %}
+                <li>Name: {{ feedback_item.name }}, Email: {{ feedback_item.email }}, Feedback: {{ feedback_item.feedback }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

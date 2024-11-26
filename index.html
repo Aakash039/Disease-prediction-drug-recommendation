@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #74d5f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #38b6c7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        .checkbox-group {
+            margin-bottom: 10px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #47bbf1;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Disease Prediction</h1>
+        <form action="/predict" method="post">
+            <div class="checkbox-group">
+                <label for="symptoms">Select Symptoms:</label><br>
+                <input type="checkbox" name="symptoms" value="Fever"> Fever
+                <input type="checkbox" name="symptoms" value="Cough"> Cough
+                <input type="checkbox" name="symptoms" value="Headache"> Headache
+                <input type="checkbox" name="symptoms" value="Fatigue"> Fatigue
+                <input type="checkbox" name="symptoms" value="Joint pain"> Joint pain
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" name="symptoms" value="Rash"> Rash
+                <input type="checkbox" name="symptoms" value="Sore throat"> Sore throat
+                <input type="checkbox" name="symptoms" value="Shortness of breath"> Shortness of breath
+                <input type="checkbox" name="symptoms" value="Abdominal pain"> Abdominal pain
+                <input type="checkbox" name="symptoms" value="Nausea"> Nausea
+            </div>
+            <br><br>
+            <input type="submit" value="Predict">
+        </form>
+    </div>
+</body>
+</html>
